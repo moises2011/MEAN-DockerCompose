@@ -1,0 +1,13 @@
+.dashboard__container {
+  color: green;
+  font-family: sans-serif; }
+
+.Post {
+  border: 1px solid black;
+  border-radius: 5;
+  margin: 5px;
+  padding: 5px; }
+
+body, html {
+  margin: 0;
+  padding: 0; }

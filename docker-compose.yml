@@ -1,0 +1,38 @@
+version: '3.0'
+
+services:
+  front-app:
+    container_name: front-app
+    image: nginx
+    build:
+      context: ./front-app
+      dockerfile: .docker/nginx.dockerfile
+    volumes:
+      - ./front-app/build:/usr/share/nginx/html
+    ports:
+      - "8080:80"
+    networks:
+      - app-network    
+
+  api-rest:
+    container_name: api-rest
+    image: nodeapp
+    build:
+      context: ./api-rest
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - db
+    networks:
+      - app-network
+      
+  db:
+    container_name: db
+    image: mongo
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
